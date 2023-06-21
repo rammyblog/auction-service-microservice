@@ -9,9 +9,18 @@ import { UserTransformer } from '../users/transformers';
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(config: ConfigService, private prisma: PrismaService) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest:
+        ExtractJwt.fromExtractors([
+          (request: any) => {
+            return this.getJwtFromAuthorization(request?.headers.auth);
+          },
+        ]) || ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: config.get('JWT_SECRET'),
     });
+  }
+
+  private getJwtFromAuthorization(authorization: string): string {
+    return authorization && authorization.split(' ')[1];
   }
 
   async validate(payload: { sub: number; email: string }) {

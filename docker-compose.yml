@@ -10,3 +10,18 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: auction-auth
+
+  inventory-db:
+    image: postgres
+    restart: always
+    ports:
+      - '5431:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: inventory
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - '5672:5672'

@@ -3,9 +3,16 @@ import { AuthModule } from './auth.module';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ResponseInterceptor } from '../interceptors';
+import { RmqService } from '@app/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
+  const rmqService = app.get<RmqService>(RmqService);
+  const configService = app.get(ConfigService);
+
+  app.connectMicroservice(
+    rmqService.getOptions(configService.get<string>('RMQ_QUEUE'), true),
+  );
 
   const moduleRef = app.select(AuthModule);
   const reflector = moduleRef.get(Reflector);
@@ -14,8 +21,7 @@ async function bootstrap() {
     new ClassSerializerInterceptor(reflector),
   );
   app.useGlobalPipes(new ValidationPipe());
-  const configService = app.get(ConfigService);
-
+  await app.startAllMicroservices();
   await app.listen(configService.get('PORT'));
 }
 bootstrap();
