@@ -1,5 +1,6 @@
 export * from './prisma/prisma.module';
-export * from './prisma/prisma.service';
+export * from './prisma/auth/index.service';
+export * from './prisma/inventory/index.service';
 export * from './rmq/rmq.module';
 export * from './rmq/rmq.service';
 

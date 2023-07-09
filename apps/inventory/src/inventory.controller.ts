@@ -7,9 +7,8 @@ export class InventoryController {
   constructor(private readonly inventoryService: InventoryService) {}
 
   @Get()
-  @UseGuards(JwtAuthGuard)
-  getHello(@Req() req: any): string {
-    console.log(req.user);
-    return this.inventoryService.getHello();
+  getAllProducts() {
+    // console.log(req.user);
+    return this.inventoryService.getAllProducts();
   }
 }

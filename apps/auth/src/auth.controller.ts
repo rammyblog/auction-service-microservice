@@ -4,11 +4,10 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { User } from '@prisma/client';
+import { User } from '@prisma/auth-projects';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorator';
 import { LoginDto } from './dto';

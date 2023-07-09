@@ -2,13 +2,12 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
-  Get,
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserTransformer } from './transformers';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {

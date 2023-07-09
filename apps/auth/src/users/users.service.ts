@@ -1,12 +1,12 @@
-import { PrismaService } from '@app/common';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import * as argon2 from 'argon2';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserTransformer } from './transformers';
+import { AuthPrismaService } from '@app/common';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: AuthPrismaService) {}
   async createUser(dto: CreateUserDto): Promise<UserTransformer> {
     const { email, password, name } = dto;
     const existingUser = await this.prisma.user.findUnique({

@@ -1,9 +1,11 @@
-import { JwtAuthGuard } from '@app/common';
-import { Injectable, Req, UseGuards } from '@nestjs/common';
+import { InventoryPrismaService } from '@app/common';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class InventoryService {
-  getHello(): string {
-    return 'Hello World!';
+  constructor(private prismaService: InventoryPrismaService) {}
+  async getAllProducts() {
+    const products = await this.prismaService.product.findMany({});
+    return products;
   }
 }

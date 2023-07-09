@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output = "../../../node_modules/@prisma/inventory-projects"
 }
 
 datasource db {
@@ -11,7 +12,7 @@ datasource db {
 }
 
 
-model Inventory {
+model Product {
   id   String @id @default(uuid())
   name  String
   userId Int

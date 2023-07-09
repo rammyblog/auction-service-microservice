@@ -6,13 +6,13 @@ import {
 import * as argon2 from 'argon2';
 import { LoginDto } from './dto';
 import { ConfigService } from '@nestjs/config';
-import { PrismaService } from '@app/common';
 import { JwtService } from '@nestjs/jwt';
+import { AuthPrismaService } from '@app/common';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private prisma: PrismaService,
+    private prisma: AuthPrismaService,
     private jwtService: JwtService,
     private config: ConfigService,
   ) {}
