@@ -2,8 +2,8 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AuthModule } from './auth.module';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ResponseInterceptor } from '../interceptors';
-import { RmqService } from '@app/common';
+// import { ResponseInterceptor } from '../interceptors';
+import { ResponseInterceptor, RmqService } from '@app/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);

@@ -7,3 +7,6 @@ export * from './rmq/rmq.service';
 export * from './auth/jwt-auth.guard';
 export * from './auth/auth.module';
 export * from './auth/services';
+
+export * from './interceptor/interceptor.module';
+export * from './interceptor/response.interceptor';
